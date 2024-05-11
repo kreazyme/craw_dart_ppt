@@ -11,14 +11,11 @@ Future<int> calculate() async {
   var browser = await puppeteer.launch();
   var myPage = await browser.newPage();
   myPage.defaultTimeout = const Duration(seconds: 50);
-  for (int i = 1; i <= 165; i++) {
+  for (int i = 1; i <= 49; i++) {
     try {
       final result = await crawInstance.getMailTolFromSinglePage(
         threadLink: '${ThreadLinks.links[0]}$i',
       );
-      result.forEach((element) {
-        print(element);
-      });
       emails.addAll(result);
     } catch (e) {
       print(e);
