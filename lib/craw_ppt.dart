@@ -1,28 +1,9 @@
-import 'package:craw_ppt/craw_instance.dart';
-import 'package:craw_ppt/extensions.dart';
-import 'package:craw_ppt/file_helper.dart';
-import 'package:craw_ppt/threads_link.dart';
-import 'package:puppeteer/puppeteer.dart';
+import 'package:craw_ppt/craw_linkedin.dart';
+import 'package:craw_ppt/craw_steam.dart';
+
+import 'craw_epik_dio.dart';
 
 Future<int> calculate() async {
-  // return 6 * 7;
-  CrawInstance crawInstance = CrawInstance();
-  List<String> emails = [];
-  var browser = await puppeteer.launch();
-  var myPage = await browser.newPage();
-  myPage.defaultTimeout = const Duration(seconds: 50);
-  for (int i = 1; i <= 49; i++) {
-    try {
-      final result = await crawInstance.getMailTolFromSinglePage(
-        threadLink: '${ThreadLinks.links[0]}$i',
-      );
-      emails.addAll(result);
-    } catch (e) {
-      print(e);
-    }
-  }
-  emails = emails.removeDuplicate();
-  FileHelper.saveEmails(emails);
-  print('Total emails: ${emails.length}');
+  CrawLinkdin().startCraw();
   return 0;
 }

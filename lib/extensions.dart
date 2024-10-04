@@ -9,6 +9,13 @@ extension XString on String? {
         .map((e) => e.trim())
         .toList();
   }
+
+  List<String> getEmailByRegex() {
+    return RegExp(AppRegex.emailRegex)
+        .allMatches(this!)
+        .map((e) => e.group(0)!)
+        .toList();
+  }
 }
 
 extension XListString on List<String> {

@@ -6,4 +6,9 @@ abstract class FileHelper {
     File('emails${DateTime.now().millisecondsSinceEpoch}.txt')
         .writeAsStringSync(data);
   }
+
+  static void addEmailToLastFile(String email, String fileName) {
+    File file = File(fileName);
+    file.writeAsStringSync('\n$email', mode: FileMode.append);
+  }
 }
